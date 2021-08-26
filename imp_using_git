@@ -1,0 +1,59 @@
+Switch to the browser with Google Cloud Shell
+Open a new Cloud Shell tab by clicking the + button  
+Change to the sample-master folder and execute the following commands:
+git config --global user.email "your_email_on_github"
+git config --global user.name "your_github_user_name"
+Verify with: git config --global --list
+------------------------------------------
+In the same Google Cloud Shell tab, change to the internal folder
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin your-git-internal-repo-address
+git push -u origin master
+You will be asked for your GitHub user id and password (Use your token as the password)
+Change to the external folder
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin your-git-external-repo-address
+git push -u origin master
+------------------------------------------
+Go make a change to your code
+In Cloud Shell, change to the service folder with the change (internal or external)
+git add .
+git commit -m "My first change"
+This commits it to your local repo
+The remote repo has not been updated yet 
+git push origin master
+This pushes the changes to the master branch of the remote repo named origin 
+
+
+----------------------------------------
+Switch to the browser with Google Cloud Shell
+Open a new Cloud Shell tab by clicking the + button
+Change to the sample-master folder and execute the following commands:
+export PROJECT=$(gcloud info --format='value(config.project)')
+git config --global user.email "(gcloud config get-value core/account)"
+git config --global user.name "Your-Name-Here"
+Create two source repos (for internal and external):
+gcloud source repos create events-app-external
+Type Y if asked to enable API
+gcloud source repos create events-app-internal
+Configure Git to use gcloud for authentication
+git config credential.helper gcloud.sh
+You have just created two source repos on Google Cloud and configured Git
+
+---------------------------------------------
+In the same Google Cloud Shell tab: 
+Change to the internal folder
+git config credential.helper gcloud.sh
+git commit -m "Initial commit"
+git remote add second https://source.developers.google.com/p/$PROJECT/r/events-app-internal
+git push -u second master
+Change to the external folder
+git config credential.helper gcloud.sh
+git commit -m "Initial commit"
+git remote add second https://source.developers.google.com/p/$PROJECT/r/events-app-external
+git push -u second master
+-----------------------------------------

@@ -1,0 +1,43 @@
+creating docker file with following content
+
+---------------------------------
+# Use Google base image for NodeJS
+FROM launcher.gcr.io/google/nodejs
+
+# Copy application code.
+COPY . /app/
+
+# Change the working directory
+WORKDIR /app
+
+# Install dependencies.
+RUN npm install
+
+# Start the Express app
+CMD ["node", "server.js"]
+-------------------------------
+
+Create a file called .dockerignore in both the internal and external folders:
+node_modules
+npm-debug.log
+
+-----------------------------
+
+To build external, from the external folder:
+docker build . -t external:v1.0.0
+To build internal, from the internal folder:
+docker build . -t internal:v1.0.0
+
+----------------------------------
+To run internal, from the internal folder:
+docker run -d -p 8082:8082 internal:v1.0.0
+To run external, from the external folder:
+docker run -d -p 8080:8080 -e SERVER='http://localhost:8082' --network="host" external:v1.0.0
+Test your app by previewing on port 8080
+Other commands to try:
+docker images
+docker ps -a
+docker stop <ContainerID>
+docker rm <ContainerID>
+--------------------------------------
+
