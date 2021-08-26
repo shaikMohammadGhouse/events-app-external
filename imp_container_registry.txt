@@ -1,0 +1,58 @@
+In the Google Cloud Console, go to Container Registry 
+Enable the API if needed
+Click Settings on left
+Enable Vulnerability Scanning
+In Cloud Shell:
+From external folder, run the following command:
+gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/external-image:v1.0.0 .
+Type Y if asked to enable API
+From internal folder, run the following command:
+gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/internal-image:v1.0.0 .
+------------------------------------------------------------------
+In the Google Cloud Console, go to Container Registry 
+Locate your containers
+Click a container image and investigate the vulnerability scanner findings
+If the scanner is not done, check back in a few minutes
+--------------------------------------------
+If you have any previous containers running, you will need to stop them
+Or you will get a port number already in use error
+Below are a few commands to help you stop any containers: 
+List all Docker processes with: docker ps -a
+Stop and remove all Docker processes:
+docker stop <container_id>
+docker rm <container_id>
+List and delete all the local Docker images:
+docker images
+docker rmi <image-id>
+
+--------------------------------------------
+In CloudShell, run the case study directly from the container registry
+Refer back to the last activity for the Docker run commands
+Use the URL to the image in the registry for the image names
+For example, your run commands will look similar to:	
+docker run -d -p 8082:8082 gcr.io/$GOOGLE_CLOUD_PROJECT/internal-image:v1.0.0
+docker run -d -p 8080:8080 -e SERVER='http://localhost:8082' --network="host" gcr.io/$GOOGLE_CLOUD_PROJECT/external-image:v1.0.0
+
+--------------------------------------------
+Go to Docker Hub (https://hub.docker.com) 
+Create an account
+Rebuild your Docker images using your Docker ID
+From external folder:
+docker build -t your-docker-hub-id/external:v1.0 .
+From internal  folder:
+docker build -t your-docker-hub-id/internal:v1.0 .
+In Cloud Shell:
+docker login
+docker push your-docker-hub-id/internal:v1.0
+docker push your-docker-hub-id/external:v1.0
+
+
+
+
+to push to gcr--
+gcloud builds submit --tag gcr.io/$<user>/ext_img:v1 .
+gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/ext_img:v1 .
+commands executed:
+
+int: docker run -d -p 8082:8082 gcr.io/$GOOGLE_CLOUD_PROJECT/int_img:v1
+ext: docker run -d -p 8080:8080 -e SERVER='http://localhost:8082' --network="host" gcr.io/dtc082021-429/ext_img:v1
