@@ -53,3 +53,25 @@ minikube -- single noded cluster
 redis, hazelcast
 daatabse-- google firestor
 aws-warehouse -- redshift [uses s3 buckets]
+
+
+azure synopsys
+aws athena -- queriies data store in aws s3
+
+--(deploying service directly to cloud vendor) --- select image and deploy. (supports different types)
+aws elastik beanstack -- push your code we will deploy for you
+google platform also provides cloud run -- to run the service.
+azure app service -- static web apps.
+
+--builds (jnekins)
+google cloud builds
+
+
+---code pipelnes
+aws code pipelines
+
+
+google build sciprt
+docker build \
+    -t gcr.io/dtc082021-429/github.com/shaikmohammadghouse/events-app-internal:$SHORT_SHA \
+    .
