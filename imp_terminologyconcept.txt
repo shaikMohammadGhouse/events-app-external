@@ -1,0 +1,55 @@
+
+
+tERRAFOME
+
+dbunit--database mocking tool
+mocha-- javascript
+karma jasmin-- angular
+selenium-- web base automation testing
+
+browserstack-- app for testing
+sonarcube
+blackduk
+
+appstudio devops cycle
+
+github axtions used for cicd.
+
+nodejs
+react -- ui 
+
+jenkins for cicd
+vscode/sts/eclipse
+
+github
+aws code pipeline
+
+https://www.urbancode.com/product/deploy/
+
+amazon cloud watch -- to see server and services running
+
+ AWS Lambda, EC2, ECS, Cognito, Kinesis, S3, Aurora DB and other related services. 
+
+Working knowledge of RDBMS and SQL (Postgres, SQL Server, etc.)
+
+grpc
+
+naget 
+npm 
+mvn (java)   
+pip(python)
+
+git-scm to study how about git works
+
+
+grc-- google cloudregistry
+ECR-- amazon elastic contianer regitry
+dockerhub -- docker conrainer registr
+EKS---- elastic kubernete server (replacing linux kubernetes)
+AKS -- azure kubernete service
+GKE--- google kubernete engine
+openshift -- redhat kubernetes
+minikube -- single noded cluster 
+redis, hazelcast
+daatabse-- google firestor
+aws-warehouse -- redshift [uses s3 buckets]
