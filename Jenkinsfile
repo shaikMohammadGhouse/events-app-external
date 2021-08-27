@@ -13,7 +13,7 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Stage 1: GIT Checkout') {
             steps {
                 echo 'Retrieving source from github' 
                 git branch: 'master',
@@ -22,7 +22,7 @@ pipeline {
                 sh 'ls -a'
             }
         }
-        stage('Stage 2') {
+        stage('Stage 2: Echoing contents') {
             steps {
                 echo 'workspace and versions' 
                 sh 'echo $WORKSPACE'
@@ -32,7 +32,8 @@ pipeline {
         
             }
         }        
-         stage('Stage 3') {
+         stage('Stage 3: Runnning NPM install') {
+             echo 'running npm instal--------'
             environment {
                 PORT = 8081
             }
@@ -44,14 +45,14 @@ pipeline {
         
             }
         }        
-         stage('Stage 4') {
+         stage('Stage 4: Pushing Docker image to GCR') {
             steps {
                 echo "build id = ${env.BUILD_ID}"
                 echo 'Tests passed on to build Docker container'
                 sh "gcloud builds submit -t gcr.io/dtc082021-429/external:v2.${env.BUILD_ID} ."
             }
         }        
-         stage('Stage 5') {
+         stage('Stage 5: running Kuberenete for docker images') {
             steps {
                 echo 'Get cluster credentials'
                 sh 'gcloud container clusters get-credentials cluster-3 --zone us-central1-c --project dtc082021-429'
